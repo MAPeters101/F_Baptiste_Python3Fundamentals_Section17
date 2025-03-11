@@ -1,6 +1,8 @@
 '''
 Question 1
-Given a list of tuples containing two numerical values, write a function that returns a list of the same tuples, sorted by the absolute value of the difference between the two numbers, in descending order.
+Given a list of tuples containing two numerical values, write a function that
+returns a list of the same tuples, sorted by the absolute value of the
+difference between the two numbers, in descending order.
 
 For example, if the input is:
 
@@ -23,17 +25,22 @@ Given the following data:
 
 suits = 'shdc'  # Spades, Hearts, Diamonds, Clubs
 ranks = list('23456789') + ['10', 'J', 'Q', 'K', 'A']
-Write a function that given those two inputs, returns a list with all 52 cards, i.e.
+Write a function that given those two inputs, returns a list with all 52 cards,
+i.e.
 
 [
   ['2s', '3s', ..., 'Ks', 'As'],
   ['2h', '3h', ..., 'Kh', 'Ah'],
   ...
 ]
-Then, enhance this function so that an optional argument can be used to specify whether the cards in each suit should be sorted in ascending or descending rank order (assume A has the highest rank in its suit).
+Then, enhance this function so that an optional argument can be used to specify
+whether the cards in each suit should be sorted in ascending or descending rank
+order (assume A has the highest rank in its suit).
 
 Question 3
-Suppose we are given some data consisting of symbols (the keys in the dictionary) and values being a tuple containing Open/High/Low/Close values for that symbol.
+Suppose we are given some data consisting of symbols (the keys in the
+dictionary) and values being a tuple containing Open/High/Low/Close values for
+that symbol.
 
 For example:
 
@@ -42,9 +49,12 @@ data = {
     'S2': (10, 20, 8, 18),
     'S3': (50, 150, 50, 150)
 }
-Write a function that given this data as input, returns the symbol whose high - low is smallest.
+Write a function that given this data as input, returns the symbol whose
+high - low is smallest.
 
-Expand on your function so that it will either return the symbol with smallest or largest high/low difference, based on an extra argument passed to the function.
+Expand on your function so that it will either return the symbol with smallest
+or largest high/low difference, based on an extra argument passed to the
+function.
 
 Question 4
 Given data that might look like this:
@@ -104,12 +114,15 @@ quotes = [
 where each tuple consists of the following data:
 
 (symbol, open, high, low, close, volume)
-Use the filter function to generate a list of rows where the close value is more than 10% away from the high value.
+Use the filter function to generate a list of rows where the close value is
+more than 10% away from the high value.
 
-Once you have done this succesfully, modify your code so that we can use any value for the percentage instead of this fixed 10%.
+Once you have done this succesfully, modify your code so that we can use any
+value for the percentage instead of this fixed 10%.
 
 Question 5
-Given an arbitrary list of numbers, write an expression that returns the smallest value in the list based on the absolute values of ech number.
+Given an arbitrary list of numbers, write an expression that returns the
+smallest value in the list based on the absolute values of ech number.
 
 For example, given the list:
 
