@@ -1,6 +1,8 @@
 '''
 Question 1
-Given a list of tuples containing two numerical values, write a function that returns a list of the same tuples, sorted by the absolute value of the difference between the two numbers, in descending order.
+Given a list of tuples containing two numerical values, write a function that
+returns a list of the same tuples, sorted by the absolute value of the
+difference between the two numbers, in descending order.
 
 For example, if the input is:
 
@@ -19,7 +21,8 @@ Then the return value of the function should be:
   (1, 2)
 ]
 Solution
-We'll use the sorted function with a custom key function that will calculate the absolute value of the difference between the two elements of each tuple.
+We'll use the sorted function with a custom key function that will calculate
+the absolute value of the difference between the two elements of each tuple.
 
 Let's write that key function first as a regular function:
 
@@ -35,7 +38,9 @@ for t in data:
 10 13 3
 Now let's define our sorting function.
 
-It needs to take a list of tuples (or more generally a sequence of sequences, each of which contains two elements (at least)), and return a sorted list using our key function, in descending order.
+It needs to take a list of tuples (or more generally a sequence of sequences,
+each of which contains two elements (at least)), and return a sorted list
+using our key function, in descending order.
 
 def sort_by_abs_diff(l):
     return sorted(l, key=sort_key)
@@ -43,7 +48,11 @@ Let's try it out and see how that works:
 
 sort_by_abs_diff(data)
 [(-1, 1), (10, 13), (-2, 2)]
-Looking good, but we want the list to be sorted in descending order - currently it is sorting in ascending order (from smallest absolute diff to largest) - let's reverse the sort direction, and while we're at it we'll use a lambda function since that key function is simple enough that we don't need to use a def:
+Looking good, but we want the list to be sorted in descending order -
+currently it is sorting in ascending order (from smallest absolute diff to
+largest) - let's reverse the sort direction, and while we're at it we'll use a
+lambda function since that key function is simple enough that we don't need to
+use a def:
 
 def sort_by_abs_diff(l):
     return sorted(
@@ -62,19 +71,24 @@ Given the following data:
 
 suits = 'shdc'  # Spades, Hearts, Diamonds, Clubs
 ranks = list('23456789') + ['10', 'J', 'Q', 'K', 'A']
-Write a function that given those two inputs, returns a list with all 52 cards, i.e.
+Write a function that given those two inputs, returns a list with all 52
+cards, i.e.
 
 [
   ['2s', '3s', ..., 'Ks', 'As'],
   ['2h', '3h', ..., 'Kh', 'Ah'],
   ...
 ]
-Then, enhance this function so that an optional argument can be used to specify whether the cards in each suit should be sorted in ascending or descending rank order (assume A has the highest rank in its suit).
+Then, enhance this function so that an optional argument can be used to
+specify whether the cards in each suit should be sorted in ascending or
+descending rank order (assume A has the highest rank in its suit).
 
 Solution
-We've already seen this exercise before - when we created the deck of cards (but as tuples).
+We've already seen this exercise before - when we created the deck of cards
+(but as tuples).
 
-Here we want to create a card as a single string wirh rank and suit - but the approach for creating the deck is similar.
+Here we want to create a card as a single string wirh rank and suit - but the
+approach for creating the deck is similar.
 
 def deck(suits, ranks):
     deck = [
@@ -83,7 +97,11 @@ def deck(suits, ranks):
     ]
     return deck
 print(deck(suits, ranks))
-[['2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s', 'Js', 'Qs', 'Ks', 'As'], ['2h', '3h', '4h', '5h', '6h', '7h', '8h', '9h', '10h', 'Jh', 'Qh', 'Kh', 'Ah'], ['2d', '3d', '4d', '5d', '6d', '7d', '8d', '9d', '10d', 'Jd', 'Qd', 'Kd', 'Ad'], ['2c', '3c', '4c', '5c', '6c', '7c', '8c', '9c', '10c', 'Jc', 'Qc', 'Kc', 'Ac']]
+[['2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s', 'Js', 'Qs', 'Ks',
+'As'], ['2h', '3h', '4h', '5h', '6h', '7h', '8h', '9h', '10h', 'Jh', 'Qh',
+'Kh', 'Ah'], ['2d', '3d', '4d', '5d', '6d', '7d', '8d', '9d', '10d', 'Jd',
+'Qd', 'Kd', 'Ad'], ['2c', '3c', '4c', '5c', '6c', '7c', '8c', '9c', '10c',
+'Jc', 'Qc', 'Kc', 'Ac']]
 Now we need to turn our attention to sorting the ranks.
 
 ranks
@@ -94,11 +112,17 @@ sorted(ranks)
 ['10', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'J', 'K', 'Q']
 So, we'll definitely need to specify a key.
 
-The problem is that we are dealing with strings - some of which contain digits (2-10) and some of which contain face cards (J, Q, K, A).
+The problem is that we are dealing with strings - some of which contain digits
+(2-10) and some of which contain face cards (J, Q, K, A).
 
-So, we need to somehow define the sort order of each of the cards. An easy way to do this would be to create an associative array that can be used to map the rank symbol (2, 3, ..., 10, J, Q, K, A) to a rank number (1, 2, 3, ..., 10, 11, 12, 13).
+So, we need to somehow define the sort order of each of the cards. An easy way
+to do this would be to create an associative array that can be used to map the
+rank symbol (2, 3, ..., 10, J, Q, K, A) to a rank number (1, 2, 3, ..., 10, 11,
+12, 13).
 
-There are different ways we could do this, maybe a dictionary with the rank symbols as keys, and the rank number as the corresponding value. That would work just fine - let's try it out:
+There are different ways we could do this, maybe a dictionary with the rank
+symbols as keys, and the rank number as the corresponding value. That would
+work just fine - let's try it out:
 
 rank_order = {
     '2': 1,
@@ -129,20 +153,30 @@ def deck(suits, ranks, *, reverse=False):
     deck = [
         [
             r + s
-            for r in sorted(ranks, key=lambda rank: rank_order[rank], reverse=reverse)
+            for r in sorted(ranks, key=lambda rank: rank_order[rank],
+            reverse=reverse)
         ]
         for s in suits
     ]
     return deck
 print(deck(suits, ranks))
-[['2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s', 'Js', 'Qs', 'Ks', 'As'], ['2h', '3h', '4h', '5h', '6h', '7h', '8h', '9h', '10h', 'Jh', 'Qh', 'Kh', 'Ah'], ['2d', '3d', '4d', '5d', '6d', '7d', '8d', '9d', '10d', 'Jd', 'Qd', 'Kd', 'Ad'], ['2c', '3c', '4c', '5c', '6c', '7c', '8c', '9c', '10c', 'Jc', 'Qc', 'Kc', 'Ac']]
+[['2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s', 'Js', 'Qs', 'Ks',
+'As'], ['2h', '3h', '4h', '5h', '6h', '7h', '8h', '9h', '10h', 'Jh', 'Qh',
+'Kh', 'Ah'], ['2d', '3d', '4d', '5d', '6d', '7d', '8d', '9d', '10d', 'Jd',
+'Qd', 'Kd', 'Ad'], ['2c', '3c', '4c', '5c', '6c', '7c', '8c', '9c', '10c',
+'Jc', 'Qc', 'Kc', 'Ac']]
 print(deck(suits, ranks, reverse=True))
-[['As', 'Ks', 'Qs', 'Js', '10s', '9s', '8s', '7s', '6s', '5s', '4s', '3s', '2s'], ['Ah', 'Kh', 'Qh', 'Jh', '10h', '9h', '8h', '7h', '6h', '5h', '4h', '3h', '2h'], ['Ad', 'Kd', 'Qd', 'Jd', '10d', '9d', '8d', '7d', '6d', '5d', '4d', '3d', '2d'], ['Ac', 'Kc', 'Qc', 'Jc', '10c', '9c', '8c', '7c', '6c', '5c', '4c', '3c', '2c']]
+[['As', 'Ks', 'Qs', 'Js', '10s', '9s', '8s', '7s', '6s', '5s', '4s', '3s',
+'2s'], ['Ah', 'Kh', 'Qh', 'Jh', '10h', '9h', '8h', '7h', '6h', '5h', '4h',
+'3h', '2h'], ['Ad', 'Kd', 'Qd', 'Jd', '10d', '9d', '8d', '7d', '6d', '5d',
+'4d', '3d', '2d'], ['Ac', 'Kc', 'Qc', 'Jc', '10c', '9c', '8c', '7c', '6c',
+'5c', '4c', '3c', '2c']]
 As you can see this approach works well.
 
 But I didn't particularly enjoy writing that dictionary by hand!!!
 
-So, another way to do this is to create another list with the rank numbers, and zip that up with the ranks themselves:
+So, another way to do this is to create another list with the rank numbers,
+and zip that up with the ranks themselves:
 
 ranks
 ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
@@ -194,9 +228,11 @@ sorted(rank_orders, key=lambda t: t[1], reverse=True)
  ('4', 3),
  ('3', 2),
  ('2', 1)]
-Of course, we're only interested in the sorted symbols, not the attached rank number:
+Of course, we're only interested in the sorted symbols, not the attached rank
+number:
 
-[rank for rank, rank_number in sorted(rank_orders, key=lambda t: t[1], reverse=True)]
+[rank for rank, rank_number in sorted(rank_orders, key=lambda t: t[1],
+reverse=True)]
 ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 So now let's re-write our function to use this approach:
 
@@ -217,9 +253,15 @@ def deck(suits, ranks, *, reverse=False):
     ]
 
 print(deck(suits, ranks, reverse=True))
-[['As', 'Ks', 'Qs', 'Js', '10s', '9s', '8s', '7s', '6s', '5s', '4s', '3s', '2s'], ['Ah', 'Kh', 'Qh', 'Jh', '10h', '9h', '8h', '7h', '6h', '5h', '4h', '3h', '2h'], ['Ad', 'Kd', 'Qd', 'Jd', '10d', '9d', '8d', '7d', '6d', '5d', '4d', '3d', '2d'], ['Ac', 'Kc', 'Qc', 'Jc', '10c', '9c', '8c', '7c', '6c', '5c', '4c', '3c', '2c']]
+[['As', 'Ks', 'Qs', 'Js', '10s', '9s', '8s', '7s', '6s', '5s', '4s', '3s',
+'2s'], ['Ah', 'Kh', 'Qh', 'Jh', '10h', '9h', '8h', '7h', '6h', '5h', '4h',
+'3h', '2h'], ['Ad', 'Kd', 'Qd', 'Jd', '10d', '9d', '8d', '7d', '6d', '5d',
+'4d', '3d', '2d'], ['Ac', 'Kc', 'Qc', 'Jc', '10c', '9c', '8c', '7c', '6c',
+'5c', '4c', '3c', '2c']]
 Question 3
-Suppose we are given some data consisting of symbols (the keys in the dictionary) and values being a tuple containing Open/High/Low/Close values for that symbol.
+Suppose we are given some data consisting of symbols (the keys in the
+dictionary) and values being a tuple containing Open/High/Low/Close values for
+that symbol.
 
 For example:
 
@@ -228,18 +270,23 @@ data = {
     'S2': (10, 20, 8, 18),
     'S3': (50, 150, 50, 150)
 }
-Write a function that given this data as input, returns the symbol whose high - low is smallest.
+Write a function that given this data as input, returns the symbol whose
+high - low is smallest.
 
-Expand on your function so that it will either return the symbol with smallest or largest high/low difference, based on an extra argument passed to the function.
+Expand on your function so that it will either return the symbol with smallest
+or largest high/low difference, based on an extra argument passed to the
+function.
 
 Solution
-We know that we can also specify a key argument for min and max, similar to the sorted function.
+We know that we can also specify a key argument for min and max, similar to
+the sorted function.
 
 We can use this key to compute high - low and base our minimum on that.
 
 But what are we "sorting"? The keys of the dictionary...
 
-So we want to find the "smallest" key in the dictionary with an order based high - low for each key, which is in fact data[key][1] - data[key][2].
+So we want to find the "smallest" key in the dictionary with an order based
+high - low for each key, which is in fact data[key][1] - data[key][2].
 
 Let's just see this with a single key first:
 
@@ -260,13 +307,16 @@ min(data)
 'S1'
 since by default, the keys are iterated when we iterate a dictionary.
 
-But of course, the min function here based the sort order on the natural order of the keys - instead we want to sort based on the high - low difference.
+But of course, the min function here based the sort order on the natural order
+of the keys - instead we want to sort based on the high - low difference.
 
 Question is, what value will the key function receive?
 
-Since we are iterating over the keys of the dictionary, that's what the key function will receive - the keys of the dictionary.
+Since we are iterating over the keys of the dictionary, that's what the key
+function will receive - the keys of the dictionary.
 
-So, our key function needs to use that key, to then calculate high-low for that specific key.
+So, our key function needs to use that key, to then calculate high-low for
+that specific key.
 
 key_func = lambda key: data[key][1] - data[key][2]
 Let's try it out:
@@ -287,7 +337,8 @@ find_min(data)
 'S2'
 We also want to the ability to find the max.
 
-One way to do this is to pass in an argument to indicate whether we are looking foir the min or the max:
+One way to do this is to pass in an argument to indicate whether we are
+looking for the min or the max:
 
 def find_extreme(d, *, is_min=True):
     if is_min:
@@ -298,11 +349,16 @@ find_extreme(data)
 'S2'
 find_extreme(data, is_min=False)
 'S1'
-But, if you think about it, we could just as easily find the max by using the min function, but "reversing" the sort order by multiplying the differences by -1.
+But, if you think about it, we could just as easily find the max by using the
+min function, but "reversing" the sort order by multiplying the differences
+by -1.
 
-For example, if we find the minimum based on these ordering values [1, 2, 3], we would get the first element (associated with 1).
+For example, if we find the minimum based on these ordering values [1, 2, 3],
+we would get the first element (associated with 1).
 
-And if we find the minimum based on these ordering values [-1, -2, -3], then we would get the last element (associated with -3). Basically the same as if we had founnd the maximum of the elements associated with [1, 2, 3].
+And if we find the minimum based on these ordering values [-1, -2, -3], then
+we would get the last element (associated with -3). Basically the same as if
+we had founnd the maximum of the elements associated with [1, 2, 3].
 
 So, we could also write our function this way:
 
@@ -369,12 +425,15 @@ quotes = [
 where each tuple consists of the following data:
 
 (symbol, open, high, low, close, volume)
-Use the filter function to generate a list of rows where the close value is more than 10% away from the high value.
+Use the filter function to generate a list of rows where the close value is
+more than 10% away from the high value.
 
-Once you have done this succesfully, modify your code so that we can use any value for the percentage instead of this fixed 10%.
+Once you have done this succesfully, modify your code so that we can use any
+value for the percentage instead of this fixed 10%.
 
 Solution
-First, let's look at a single record and see how we might calculate the percentage difference between close and high (as a percentage of high).
+First, let's look at a single record and see how we might calculate the
+percentage difference between close and high (as a percentage of high).
 
 row = ('ADGF', 4.31, 4.55, 4.31, 4.54, 10200)
 We can extract the close and high values:
@@ -387,9 +446,13 @@ We can calculate the percentage this way:
 
 abs(close - high) / high
 0.002197802197802151
-And then we'll want to find only those rows where that percentage is > 0.1 (10%).
+And then we'll want to find only those rows where that percentage is > 0.1
+(10%).
 
-We'll use the filter function which will be applied to quotes - a list of these tuples. So the predicate function in filter will receive the tuple as its argument, and our predicate function needs to return True if the difference is more than 10%, and False otherwise.
+We'll use the filter function which will be applied to quotes - a list of
+these tuples. So the predicate function in filter will receive the tuple as
+its argument, and our predicate function needs to return True if the
+difference is more than 10%, and False otherwise.
 
 Let's write the predicate function first as a regular function:
 
@@ -420,9 +483,11 @@ We could also use a lambda in this case:
 
 list(filter(lambda t: abs(t[4] - t[2]) / t[2] > 0.1, quotes))
 [('ABCW', 0.52, 0.61, 0.52, 0.53, 83000)]
-But I want to use the def version of the predicate, because now we want the ability to specify any value for the threshold (hardcoded to 10% at the moment).
+But I want to use the def version of the predicate, because now we want the
+ability to specify any value for the threshold (hardcoded to 10% at the moment).
 
-The problem is that the predicate function in filter will only receive the tuple - we cannot additional pass in the threshold value.
+The problem is that the predicate function in filter will only receive the
+tuple - we cannot additional pass in the threshold value.
 
 We could certainly write different predicate functions:
 
@@ -457,13 +522,17 @@ list(filter(is_more_than_1, quotes))
  ('ADAT', 0.6, 0.68, 0.59, 0.66, 86400),
  ('ADBE', 29.43, 29.71, 29.07, 29.14, 7585300),
  ('ADEP', 6.14, 6.14, 4.95, 5.61, 71000)]
-But this is very repetitive code, and we can do much better by using... a closure! Remember the partial example we did just now? We can use a similar approach here, to generate predicate functions with the desired threshold values.
+But this is very repetitive code, and we can do much better by using... a
+closure! Remember the partial example we did just now? We can use a similar
+approach here, to generate predicate functions with the desired threshold
+values.
 
 def more_than(threshold):
     def predicate(t):
         return abs(t[4] - t[2]) / t[2] > threshold
     return predicate
-As you can see, when we call more_than(0.1) we'll end up with a predicate function where the threshold will be set to 0.1:
+As you can see, when we call more_than(0.1) we'll end up with a predicate
+function where the threshold will be set to 0.1:
 
 pred = more_than(0.1)
 pred(('ABCO', 48.75, 100, 46.9, 50.37, 66300))
@@ -502,7 +571,8 @@ list(filter(more_than(0.01), quotes))
  ('ADBE', 29.43, 29.71, 29.07, 29.14, 7585300),
  ('ADEP', 6.14, 6.14, 4.95, 5.61, 71000)]
 Question 5
-Given an arbitrary list of numbers, write an expression that returns the smallest value in the list based on the absolute values of ech number.
+Given an arbitrary list of numbers, write an expression that returns the
+smallest value in the list based on the absolute values of ech number.
 
 For example, given the list:
 
@@ -510,9 +580,11 @@ l = [5, 6, -4, 8]
 Your expression should return -4.
 
 Solution
-Let's recall that the min function, like the sorted (and max) functions can take a key function to specify a custom ordering.
+Let's recall that the min function, like the sorted (and max) functions can
+take a key function to specify a custom ordering.
 
-In this case, we want to order the numbers based on the absolute value of each one, and then find the minimum value based on that ordering.
+In this case, we want to order the numbers based on the absolute value of each
+one, and then find the minimum value based on that ordering.
 
 We don't even need to write the key function, it already exists: abs
 
