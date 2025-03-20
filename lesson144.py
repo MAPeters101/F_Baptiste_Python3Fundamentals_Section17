@@ -46,11 +46,11 @@ print('a'.casefold(), 'A'.casefold())
 print('a'.casefold() =='A'.casefold())
 print('-'*80)
 
-
-
-
-
+print(sorted(data, key=lambda x: x.casefold()))
 print('-'*80)
+
+
+
 
 
 
