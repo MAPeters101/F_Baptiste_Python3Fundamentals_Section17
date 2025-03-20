@@ -13,5 +13,15 @@ print([key_func(x) for x in data])
 print(sorted(data, key=key_func))
 print('-'*80)
 
+data = [2, -2, 1, -1]
+print(sorted(data, key=key_func))
+print(sorted(data, key=key_func, reverse=True))
+
+
+
+print('-'*80)
+
+
+
 
 
