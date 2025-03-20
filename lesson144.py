@@ -16,6 +16,13 @@ print('-'*80)
 data = [2, -2, 1, -1]
 print(sorted(data, key=key_func))
 print(sorted(data, key=key_func, reverse=True))
+print('-'*80)
+
+print(sorted(data, key=lambda x: abs(x)))
+print(sorted(data, key=abs))
+print('-'*80)
+
+
 
 
 
