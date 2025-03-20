@@ -17,5 +17,8 @@ evens = filter(is_even, data)
 print(evens)
 print(list(evens))
 print(list(evens))
+print('-'*80)
 
-
+evens = filter(lambda n: n%2 == 0, data)
+print(list(evens))
+print(list(evens))
