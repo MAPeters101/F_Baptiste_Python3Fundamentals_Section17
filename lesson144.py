@@ -39,6 +39,13 @@ print(sorted(data, key=lambda d: (d['close'] - d['open']/d['open'])))
 pprint(sorted(data, key=lambda d: (d['close'] - d['open']/d['open'])))
 print('-'*80)
 
+data = ['Z', 'a', 'A', 'z', 'x', 'X']
+print(sorted(data))
+print('A' < 'a')
+print('a'.casefold(), 'A'.casefold())
+print('a'.casefold() =='A'.casefold())
+print('-'*80)
+
 
 
 
