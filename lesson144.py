@@ -35,6 +35,10 @@ print(sorted(data, key=lambda d: d['close'], reverse=True))
 pprint(sorted(data, key=lambda d: d['close'], reverse=True))
 print('-'*80)
 
+print(sorted(data, key=lambda d: (d['close'] - d['open']/d['open'])))
+pprint(sorted(data, key=lambda d: (d['close'] - d['open']/d['open'])))
+print('-'*80)
+
 
 
 
