@@ -94,4 +94,6 @@ filtered = filter(closed_higher, quotes)
 pprint(list(filtered))
 print('-'*80)
 
+filtered = filter(lambda rec: rec[4] > rec[1], quotes)
+pprint(list(filtered))
 
