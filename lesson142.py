@@ -86,4 +86,12 @@ print(closed_higher(('ADGF', 4.31, 4.55, 4.31, 4.54, 10200)))
 print(closed_higher(('ADES', 6.2, 6.22, 6, 6.19, 4800)))
 print('-'*80)
 
+from pprint import pprint
+filtered = filter(closed_higher, quotes)
+print(filtered)
+print(list(filtered))
+filtered = filter(closed_higher, quotes)
+pprint(list(filtered))
+print('-'*80)
+
 
