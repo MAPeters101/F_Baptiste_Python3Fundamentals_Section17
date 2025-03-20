@@ -49,7 +49,8 @@ print('-'*80)
 print(sorted(data, key=lambda x: x.casefold()))
 print('-'*80)
 
-
+data = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+print(sorted(data, key=len))
 
 
 
