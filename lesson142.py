@@ -97,3 +97,11 @@ print('-'*80)
 filtered = filter(lambda rec: rec[4] > rec[1], quotes)
 pprint(list(filtered))
 
+print('.'*80)
+
+filtered = (data for data in quotes if closed_higher(data))
+pprint(list(filtered))
+
+
+
+
